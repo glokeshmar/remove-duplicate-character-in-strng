@@ -1,0 +1,54 @@
+package naveen;
+import java.util.*;
+public class zoho_duplicatearray {
+	//method 1 using map 
+	public static void dup(String ar,int l) {
+		Map<Character,Integer> map= new LinkedHashMap<>();
+		for(int i=0;i<l;i++) {
+			char ch=ar.charAt(i);		
+			if(map.containsKey(ch)) {
+				int a = map.get(ch);
+				map.put(ch, ++a);
+			}
+			else {
+				map.put(ch, 1);
+			}
+			//System.out.println(map);
+		}
+		String s1="";
+		//Set<Map.Entry<Character	,Integer>> lmap = map.entrySet();
+		//System.out.println(lmap);
+		for(Map.Entry<Character, Integer> r:map.entrySet()) {
+			s1+=r.getKey();
+		}
+		System.out.println(s1);
+	}
+	//method 2 directly deleted
+	public static void dup1(String st,int l) {
+		StringBuilder sb = new StringBuilder (st);
+		System.out.print(sb);
+
+		for(int i=0;i<l;i++) {
+			for(int j=i+1;j<l;j++) {
+				char c1=sb.charAt(i);
+				char c2=sb.charAt(j);
+				if(c1==c2) {
+					sb.deleteCharAt(i);
+					i=0;
+					j=0;
+					l=l-1;
+				}
+			}
+			System.out.print(sb);
+		}
+
+	}
+	public static void main(String args[]) {
+		String st="zohocatalyst";
+		int l=st.length();
+		dup(st,l);
+		dup1(st,1);
+
+
+	}
+}
